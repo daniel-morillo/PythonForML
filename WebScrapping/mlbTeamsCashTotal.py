@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import csv
 
 # URL de la página que contiene la tabla
 url = 'https://www.spotrac.com/mlb/cash/_/year/2024/sort/cash_total'
@@ -42,3 +43,14 @@ if response.status_code == 200:
             print(f"Equipo: {team}, Salario Total: {cash}\n")
 else:
     print(f"Error al acceder a la página: {response.status_code}")
+
+# Guardar los datos en un archivo CSV
+with open('mlb_teams_cash_total.csv', 'w', newline='', encoding='utf-8') as csvfile:
+    fieldnames = ['Equipo', 'Salario Total']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    
+    writer.writeheader()
+    for team, cash in zip(teams, total_cash):
+        writer.writerow({'Equipo': team, 'Salario Total': cash})
+
+print("Datos exportados exitosamente a mlb_teams_cash_total.csv")
