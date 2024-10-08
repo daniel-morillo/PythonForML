@@ -51,6 +51,9 @@ with open('mlb_teams_cash_total.csv', 'w', newline='', encoding='utf-8') as csvf
     
     writer.writeheader()
     for team, cash in zip(teams, total_cash):
-        writer.writerow({'Equipo': team, 'Salario Total': cash})
+        if team == 'Totals' or team == 'Averages':
+            continue
+        else:
+            writer.writerow({'Equipo': team, 'Salario Total': cash})
 
 print("Datos exportados exitosamente a mlb_teams_cash_total.csv")
