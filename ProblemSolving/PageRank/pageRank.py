@@ -91,6 +91,7 @@ def sample_pagerank(corpus, damping_factor, n):
     their estimated PageRank value (a value between 0 and 1). All
     PageRank values should sum to 1.
     """
+    print("Sample")
     #initialize the dictionary
     page_rank = {page: 0 for page in corpus}
     #initialize with a random page
